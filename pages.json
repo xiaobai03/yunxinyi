@@ -1,0 +1,347 @@
+{
+	"pages": [
+		
+		{
+		    "path" : "pages/home/home",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "首页",
+		        "enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+		    }
+		},
+		{
+			"path": "pages/gift_bag/gift_bag",
+			"style": {
+				"navigationBarTitleText": "礼包",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+		    "path" : "pages/mine/my_boss/my_boss",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "邀请助理",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		{
+		    "path" : "pages/chakan_card/chakan_card",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "查看贺卡",
+		        "enablePullDownRefresh": false
+		    }
+		},
+		
+		{
+		    "path" : "pages/greeting_card/success/success",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "赠送完成",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		
+		{
+		    "path" : "pages/mine/my_gift/add_gift/add_gift",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "添加礼品",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		
+		{
+			"path": "pages/greeting_card/greeting_card",
+			"style": {
+				"navigationBarTitleText": "贺卡",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+		    "path" : "pages/greeting_card/edit_card/edit_card",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "编辑贺卡",
+		        "enablePullDownRefresh": false
+		    }
+		},
+		{
+			"path": "pages/mine/contacts/add_contacts/add_contacts",
+			"style": {
+				"navigationBarTitleText": "添加联系人",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/mine/contacts/contacts",
+			"style": {
+				"navigationBarTitleText": "我的联系人",
+				"enablePullDownRefresh": false
+			}
+		},
+
+		{
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
+			}
+
+		},
+		
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/mine/setting/setting",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+		    "path" : "pages/mine/fahuo_tongji/details/details",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "详情",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+        {
+            "path" : "pages/mine/contacts/edit_contacts/edit_contacts",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "编辑联系人",
+                "enablePullDownRefresh": false
+            }
+            
+        },{
+		    "path" : "pages/mine/contacts/details/details",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "详情",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+        ,{
+            "path" : "pages/mine/my_gift/details/details",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "礼品详情",
+                "enablePullDownRefresh": false
+            }
+            
+        },{
+		    "path" : "pages/mine/my_gift/my_gift",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "我的礼品库",
+		        "enablePullDownRefresh": false
+		    }
+		}
+        ,{
+            "path" : "pages/mine/my_assistant/my_assistant",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的发货助理",
+                "enablePullDownRefresh": false
+            }
+        },
+		{
+		    "path" : "pages/mine/give_gift/give_gift",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "送礼单",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+        {
+            "path" : "pages/mine/give_gift/details/details",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "送礼单详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/accept_gift/details/details",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "收礼单详情",
+                "enablePullDownRefresh": false
+            }
+            
+        },
+		{
+		    "path" : "pages/mine/give_gift/online-fahuo/online-fahuo",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "填写发货信息",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		{
+		    "path" : "pages/mine/accept_gift/accept_gift",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "收礼单",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+        ,{
+            "path" : "pages/greeting_card/yulan_card/yulan_card",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "贺卡预览",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+
+        ,{
+            "path" : "pages/greeting_card/yulan_more/yulan_more",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "贺卡预览",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/greeting_card/edit_more/edit_more",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "编辑贺卡",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/chakan_gift/chakan_gift",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "查看礼包",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/address/address",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "填写收货地址",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/huizeng/huizeng",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "回赠礼品",
+                "enablePullDownRefresh": false
+            }
+            
+        },
+		{
+            "path" : "pages/mine/fahuo_management/fahuo_management",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "发货管理",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/fahuo_management/details/details",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "礼品详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/fahuo_management/online-fahuo/online-fahuo",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "填写发货信息",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mine/fahuo_tongji/fahuo_tongji",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "发货统计",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/chakan_gift/details_gift/details_gift",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color": "#909399",
+		"selectedColor": "#AC3E3C",
+		"backgroundColor": "#FFFFFF",
+		"borderStyle": "white",
+		"list": [{
+				"pagePath": "pages/home/home",
+				"iconPath": "static/images/icon_1.png",
+				"selectedIconPath": "static/images/icon_1_active.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/greeting_card/greeting_card",
+				"iconPath": "static/images/icon_2.png",
+				"selectedIconPath": "static/images/icon_2_active.png",
+				"text": "选贺卡"
+			},
+			{
+				"pagePath": "pages/gift_bag/gift_bag",
+				"iconPath": "static/images/icon_3.png",
+				"selectedIconPath": "static/images/icon_3_active.png",
+				"text": "装礼包"
+			},
+			{
+				"pagePath": "pages/mine/mine",
+				"iconPath": "static/images/icon_4.png",
+				"selectedIconPath": "static/images/icon_4_active.png",
+				"text": "我的"
+			}
+		]
+	},
+	"easycom": {
+
+	}
+}

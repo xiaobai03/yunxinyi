@@ -1,0 +1,9 @@
+{
+    "id": "tn-datepicker",
+    "name": "日期区间选择",
+    "version": "0.0.3",
+    "description": "一款选择日期区间插件，开始日期与结束日期",
+    "keywords": [
+        "日期，时间段，日期区间，选择器"
+    ]
+}
