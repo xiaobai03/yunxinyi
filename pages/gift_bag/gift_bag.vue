@@ -21,98 +21,61 @@
 				</delSlideLeft>
 			</view>
 			<view class="btn_box">
-				<view v-if="list.length > 0">
-					<view class="btn_box_box">
+				<view v-if="card_id && card_id > 0">
+					<view class="btn_box_box " v-if="list.length > 0">
 						<view class="btn_left btns" @click="subFun(1)">添加礼品</view>
 						<view class="btn_right btns" @click="subFun(2)">上传新礼品</view>
 					</view>
-					<button class="btn_center_a" v-if="disabled" @click="selectCard">选择贺卡</button>
-					<button class="btn_center_a" v-else @click="openModal()">选好了，发送给朋友</button>
+					<view v-if="list.length == 0">
+						<view style="font-style: 26upx;text-align: center;margin-bottom: 10upx;color: #999;">可将多个礼品放在一个礼包里</view>
+						<button class="btn_center_a"  @click="gotoPage">挑选⼀件礼品</button>
+					</view>
+					<button class="btn_center_a" v-else data-name="shareBtn" open-type="share">发送给微信好友</button>
 				</view>
 				<view v-else>
-					<view style="font-style: 26upx;text-align: center;margin-bottom: 10upx;color: #999;">可将多个礼品放在一个礼包里
-					</view>
-					<view class="btn_center" @click="gotoPage()">挑选⼀件礼品</view>
-					<!-- <button class="btn_center_a" @click="openModal()">选好了，发送给朋友</button> -->
+					<button class="btn_center" @click="selectCard">请先选择贺卡</button>
 				</view>
 			</view>
 		</view>
-		<popup v-model="showModal" position="bottom" ref="lvvpopref">
-			<view class="popupBg" style="width: 100%;height: 50vh;background:#fff;left:0;bottom:0;">
-				<view class="title">即将生成微信贺卡封面</view>
-				<view class="body">
-					<view style="height: 100upx;width: 500upx;margin:20upx auto">
-						<view class="input_boxes">
-							<input type="text" class="input_box" @focus="inputFocus" @input="inputInput"
-								@keypress="keyFn" placeholder="请输入收件人姓名或昵称" v-model="parsonName" />
-							<view class="input_btn" @click="generate" v-if="showBtnes">确定</view>
-							<view class="input_btn" @click="repeatInput" v-else>重新输入</view>
-						</view>
-						<view class="select_box" v-if="showSelect">
-							<radio-group @change="radioChange">
-								<label class="select_item" v-for="(item, index) in lianxirenList" :key="item.realname">
-									<view>
-										<radio :value="item.realname" :checked="index === current" />
-									</view>
-									<view>{{item.realname}}</view>
-								</label>
-							</radio-group>
-						</view>
-
-						<canvas canvas-id="imgCanvas" id="imgCanvas">
-						</canvas>
-					</view>
-					<button v-if="showBtn" class="btn_mobile_a" data-name="shareBtn" open-type="share">赠送礼品</button>
-				</view>
-			</view>
-		</popup>
 	</view>
 </template>
 
 <script>
-	import tSlide from "@/components/t-slide/t-slide.vue"
 	import delSlideLeft from '@/components/ay-operate/del_slideLeft.vue'
-	import popup from '@/components/lvv-popup/lvv-popup.vue'
 	export default {
 		components: {
-			tSlide,
 			delSlideLeft,
-			popup
 		},
 		data() {
 			return {
-				showModal: false,
 				list: [],
-				disabled: false,
-				parsonName: '',
-				showSelect: false,
-				showBtnes: true,
-				text: '亲启',
-				current: 100,
-				items: [],
-				lianxirenList: [],
-				//左滑默认宽度
-				delBtnWidth: 80,
-				options: [{
-					text: '删除',
-					style: {
-						backgroundColor: '#dd524d'
-					}
-				}],
-				showBtn: false,
+				showModal:false,
+				personName:'',
 				hekaobj: {},
 				giftbagDetailList: [],
-				real_name: '',
-				imageUrl: '',
-				canvas_text: '',
-				shareObj: {}
+				shareObj: {},
+				card_id:'',
+				lipinName:'',
 			}
 		},
 		onLoad(option) {
-			this.real_name = uni.getStorageSync('real_name')
+			
 		},
 		onShow() {
-			this.getData()
+			if(uni.getStorageSync('card_id')){
+				this.card_id = uni.getStorageSync('card_id')
+				this.personName = uni.getStorageSync('personName')
+				this.$request(1025, {
+					id: this.card_id
+				}).then(res => {
+					this.hekaobj = res.data
+					this.hekaobj.style = JSON.parse(this.hekaobj.style)
+					this.getData()
+				})
+			}else{
+				this.card_id = uni.getStorageSync('card_id')
+				this.list = []
+			}
 		},
 		created() {
 			const that = this
@@ -129,155 +92,66 @@
 					url: '/pages/greeting_card/greeting_card'
 				})
 			},
-			radioChange(evt) {
-				this.parsonName = evt.detail.value
-				for (let i = 0; i < this.items.length; i++) {
-					if (this.items[i].realname === evt.detail.value) {
-						this.current = i;
-						break;
-					}
-				}
-				this.showSelect = false
-			},
+			
 			gotoPage() {
 				uni.navigateTo({
 					url: '/pages/mine/my_gift/my_gift'
 				})
 			},
-			repeatInput() {
-				this.parsonName = ''
-				this.showBtn = false
-				this.showBtnes = true
+			openModal(){
+				this.showModal = true
+				const name = this.list.map(item=>{ return item.name})
+				this.lipinName = name.join(',')
+				// this.getSign()
 			},
-			getlianxirenList() {
-				this.$request(1011, {
-					curr_page: 1,
-					page_size: 100,
-				}).then((res) => {
-					this.lianxirenList = this.items = res.data.data_list
-				})
-			},
-			inputFocus() {
-				this.showBtn = false
-				this.showSelect = true
-				this.showBtnes = true
-			},
-			inputInput(e) {
-				this.lianxirenList = []
-				this.items.map(item => {
-					if (item.realname.includes(e.target.value)) {
-						this.lianxirenList.push(item)
-					}
-				})
-			},
-			openModal() {
-				this.getlianxirenList()
+			getSign(){
 				const that = this
-				this.giftbagDetailList = []
-				this.list.map(item => {
-					const obj = {}
-					obj.id = parseInt(item.id)
-					obj.quantity = item.quantity
-					this.giftbagDetailList.push(obj)
-				})
 				const data = {}
 				data.card_id = that.hekaobj.id
-				data.call = that.parsonName
+				data.call = uni.getStorageSync('personName')
 				data.content = that.hekaobj.content
 				data.giftbagDetailList = that.giftbagDetailList
-				this.$request(1030, data).then(res => {
+				that.$request(1030, data).then(res => {
 					that.shareObj.id = res.data.id
 					that.shareObj.sign = res.data.sign
 					that.shareObj.uid = res.data.uid
 				})
-				this.showModal = true
 			},
-			generate() {
-				uni.showToast({
-					title: '正在生成封面图片',
-					icon: 'loading'
-				})
-				this.showBtnes = false
+			onShareAppMessage() {
 				const that = this
-				uni.showModal({
-					title:1
-				})
-				uni.getImageInfo({
-					src: 'https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/xinfeng.png'
-				}).then(res => {
-					that.canvas_text = that.parsonName + '亲启';
-					const ctx = uni.createCanvasContext('imgCanvas');
-					ctx.drawImage(res[1].path, 0, -30, 375, 336) // 底图
-					ctx.font = 'bold 30rpx serif'
-					ctx.setTextAlign('left')
-					ctx.setFillStyle("#d9d9d9")
-					ctx.fillText(that.canvas_text, 30, 80)
-					ctx.setTextAlign('right')
-					ctx.setFillStyle("#d9d9d9")
-					ctx.fillText(that.real_name + '赠', 350, 240)
-					ctx.draw()
-					setTimeout(() => {
-						that.saveImage()
-					}, 50)
-				})
-			},
-			saveImage() {
-				const that = this
-				uni.canvasToTempFilePath({
-					canvasId: 'imgCanvas',
-					fileType: 'jpg',
-					x: 0,
-					y: 0,
-					width: 750,
-					height: 612,
-					destWidth: 375,
-					destHeight: 336,
-					success: function(res) {
-						uni.setStorageSync('fenxiangImg', res.tempFilePath)
-						that.imageUrl = res.tempFilePath
-						that.showBtn = true
-					},
-				})
-			},
-			onShareAppMessage(e) {
-				const that = this
-				const img = uni.getStorageSync('fenxiangImg')
-				let title = ''
-				let provider = 'weixin'
-				let scene = "WXSceneSession"
-				let path =
-					`/pages/chakan_card/chakan_card?id=${that.shareObj.id}&uid=${that.shareObj.uid}&sign=${that.shareObj.sign}`
-				let imageUrl = that.imageUrl
+				let img = uni.getStorageSync('fenxiangImg')
+			    const promise = new Promise(resolve => {
+			      this.getSign()
+				  uni.showToast({
+				  	title:'加载中...',
+					icon:'loading'
+				  })
+			      setTimeout(() => {
+			        resolve({
+					title: '',
+					scene:'WXSceneSession',
+					provider:'weixin',
+					imageUrl: img,
+					 path : `/pages/chakan_card/chakan_card?id=${that.shareObj.id}&uid=${that.shareObj.uid}&sign=${that.shareObj.sign}`
+			        })
+			      }, 1000)
+			    })
 				setTimeout(() => {
-					uni.setStorageSync('card_id', 0)
-					uni.setStorageSync('fenxiangImg', '')
-					that.parsonName = ''
-					that.showModal = false
-					uni.navigateTo({
-						url: '/pages/greeting_card/success/success'
-					})
-				}, 2000)
-				return {
-					title: title,
-					provider: provider,
-					scene: scene,
-					type: 1,
-					path: path,
-					imageUrl: imageUrl
-				}
-			},
+						uni.setStorageSync('card_id', '')
+						uni.setStorageSync('fenxiangImg', '')
+						uni.navigateTo({
+							url: '/pages/greeting_card/success/success'
+						})
+					}, 2000)
+			    return {
+			      title: '',
+				  scene:'WXSceneSession',
+				  provider:'weixin',
+				  imageUrl: uni.getStorageSync('fenxiangImg'),
+			      promise 
+			    }
+			  },
 			getData() {
-				if (uni.getStorageSync('card_id')) {
-					this.disabled = false
-					this.$request(1025, {
-						id: uni.getStorageSync('card_id')
-					}).then(res => {
-						this.hekaobj = res.data
-						this.hekaobj.style = JSON.parse(this.hekaobj.style)
-					})
-				} else {
-					this.disabled = true
-				}
 				const that = this
 				this.$request(1029, {
 					curr_page: 1,
@@ -285,10 +159,17 @@
 				}).then(res => {
 					if (res.code == 0) {
 						that.list = res.data.data_list
-						that.list.map(item => {
-							item.quantity = parseInt(item.quantity)
-							that.$set(item, 'right', 0)
-						})
+						if(that.list.length > 0){
+							that.giftbagDetailList = []
+							that.list.map(item => {
+								item.quantity = parseInt(item.quantity)
+								that.$set(item, 'right', 0)
+								const obj = {}
+								obj.id = parseInt(item.id)
+								obj.quantity = parseInt(item.quantity)
+								that.giftbagDetailList.push(obj)
+							})
+						}
 					}
 				})
 			},
@@ -337,7 +218,6 @@
 
 			},
 			delItem(item) {
-				console.log(item)
 				const that = this
 				uni.showModal({
 					title: '提示',
@@ -571,99 +451,6 @@
 			font-weight: 500;
 		}
 	}
-
-	.popupBg {
-		background: #f8f8f8;
-		position: absolute;
-		padding: 20rpx;
-
-		.title {
-			font-size: 30upx;
-			font-weight: bold;
-			text-align: center;
-			line-height: 100upx;
-			height: 100upx;
-		}
-
-		.body {
-			display: flex;
-			flex-flow: column;
-			align-items: center;
-			// justify-content: center;
-			height: calc(50vh - 100upx);
-
-			.input_boxes {
-				position: relative;
-				height: 80upx;
-
-				.input_box {
-					margin: 20upx auto;
-					width: 470upx;
-					color: #333333;
-					padding-left: 30upx;
-					font-size: 26upx;
-					border-radius: 40upx;
-					line-height: 80upx;
-					height: 80upx;
-					background: #F1F1F1;
-				}
-
-				.input_btn {
-					width: 120upx;
-					text-align: center;
-					height: 80upx;
-					line-height: 80upx;
-					color: #FFFFFF;
-					background: #D04442;
-					position: absolute;
-					top: 0;
-					right: 0;
-					z-index: 9999;
-					border-radius: 0 40upx 40upx 0;
-				}
-			}
-
-			.select_box {
-				height: calc(50vh - 200upx);
-				overflow-y: auto;
-
-				.select_item {
-					border-bottom: 2upx solid #d9d9d9;
-					display: flex;
-					padding: 20upx;
-					align-items: center;
-				}
-			}
-
-			#imgCanvas {
-				opacity: 0;
-				// background: url(../../static/images/xinfeng.png) no-repeat;
-				// background-size: 100% 100%;
-				width: 750upx;
-				height: 632upx;
-				margin-top: -100upx;
-				margin-left: -120upx;
-				position: fixed;
-				top: -632rpx;
-				left: -750upx;
-			}
-
-			.btn_mobile_a {
-				width: 500upx;
-				margin: 20upx auto;
-				height: 80upx;
-				border-radius: 38upx;
-				line-height: 76upx;
-				text-align: center;
-				box-shadow: 0px -12px 24px -12px rgba(217, 217, 217, 0.5);
-				background: #D04442;
-				border: 2upx solid #D04442;
-				font-size: 26upx;
-				color: #ffffff;
-			}
-		}
-	}
-
 	button[disabled]:not([type]) {
 		background-color: #F1F1F1;
 		color: rgba(0, 0, 0, .3);

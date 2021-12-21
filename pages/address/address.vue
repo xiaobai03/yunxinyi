@@ -125,6 +125,7 @@
 				// remarks:'',
 				if(this.form.name && this.form.mobile && this.form.ssq && this.form.address){
 					if(that.showBtn){
+						
 						that.$request(1038,{
 							regard_id:that.form.regard_id,
 							name:that.form.name,
@@ -156,6 +157,7 @@
 							}
 						})
 					}
+					
 				}else{
 					uni.showToast({
 						title:'请完善信息',

@@ -53,21 +53,37 @@
 				moveX:36,
 				move:'',
 				list: [{
-					name: '春江花月夜.mp3',
+					name: '钢琴曲-当爱来临.mp3',
 					value:1,
-					url: 'https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/music_4.mp3'
+					url: 'https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/music_new_1.mp3'
 				},
 				{
-					name: '汉宫秋月（古筝）.mp3',
+					name: '钢琴曲-Shining Smile闪亮的微笑.mp3',
 					value:2,
-					url: 'https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/music_5.mp3'
+					url: 'https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/music_new_2.mp3'
 				},{
-					name: '月儿高（古筝）.mp3',
+					name: '管弦乐-新春乐.mp3',
 					value:3,
-					url: 'https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/music_6.mp3'
+					url: 'https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/music_new_3.mp3'
+				},{
+					name: '交响音乐-普天同庆.mp3',
+					value:4,
+					url: 'https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/music_new_4.mp3'
+				},{
+					name: '民乐大合奏-花好月圆.mp3',
+					value:5,
+					url: 'https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/music_new_5.mp3'
+				},{
+					name: '民乐大合奏-龙飞凤舞.mp3',
+					value:6,
+					url: 'https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/music_new_6.mp3'
+				},{
+					name: '民乐大合奏-紫竹调.mp3',
+					value:6,
+					url: 'https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/music_new_7.mp3'
 				}],
 				array:['是','否'],
-				music:['春江花月夜.mp3','汉宫秋月（古筝）.mp3','月儿高（古筝）.mp3'],
+				music:['钢琴曲-当爱来临.mp3','钢琴曲-Shining Smile闪亮的微笑.mp3','管弦乐-新春乐.mp3','交响音乐-普天同庆.mp3','民乐大合奏-花好月圆.mp3','民乐大合奏-龙飞凤舞.mp3','民乐大合奏-紫竹调.mp3'],
 				windowWidth:'',
 				windowHeight:'',
 				mosicIcon: 'https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/music_icon.png',
@@ -129,7 +145,7 @@
 				this.$request(1022, data).then(res => {
 					if (res.code == 0) {
 						uni.reLaunch({
-							url:'/pages/greeting_card/yulan_card/yulan_card?id='+data.id
+							url:`/pages/greeting_card/yulan_card/yulan_card?id=${data.id}&showPage=true`
 						})
 						that.audioPlay = false
 					}
@@ -267,7 +283,7 @@
 			left: 50upx;
 			width: 650upx;
 			height: 80upx;
-			z-index: 99;
+			z-index: 9999;
 			.btn{
 				border-radius: 40upx;
 				line-height: 80upx;

@@ -25,11 +25,12 @@
 							<text class="text-right">共{{item.giftbag_detail_list.length}}份</text>
 						</view>
 					</view>
-					<view class="item_name" v-if="item.regardExpressInfo">
+					<view class="item_name">
 						<view class="box" style="width: 280upx;">
-							<view class="group">
+							<view class="group" >
 								<view class="cell">收礼人</view>
-								<view class="cell text">{{item.to_name}}</view>
+								<view class="cell text" v-if="item.status == 2">{{item.to_name}}</view>
+								<view class="cell text" v-if="item.status == 1">{{item.call}}</view>
 							</view>
 						</view>
 						<view class="box" style="margin-left: 20upx;">

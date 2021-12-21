@@ -118,10 +118,10 @@
 		},
 		methods: {
 			getTongzhiList(){
-			
 				this.$request(1036, {
 					curr_page:1,
-					page_size:100,
+					page_size:9999,
+					type:'all'
 				}).then(res=>{
 					this.list = res.data.data_list
 					this.$request(1034, {

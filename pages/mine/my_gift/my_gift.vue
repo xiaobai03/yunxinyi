@@ -77,21 +77,28 @@
 				})
 			},
 			addTogift(item) {
-				this.$request(1026, {
-					gid: item.id
-				}).then(res => {
-					if (res.code == 0) {
-						uni.showToast({
-							title: '添加到礼包'
+				const card_id = uni.getStorageSync('card_id')
+				if(!card_id){
+					uni.showToast({
+						title:'请先选择贺卡，在添加礼品！',
+						icon:'none'
+					})
+				}else{
+						this.$request(1026, {
+							gid: item.id
+						}).then(res => {
+							if (res.code == 0) {
+								uni.showToast({
+									title: '添加到礼包'
+								})
+								setTimeout(() => {
+									uni.switchTab({
+										url: '/pages/gift_bag/gift_bag'
+									})
+								}, 1500)
+							}
 						})
-						setTimeout(() => {
-							uni.switchTab({
-								url: '/pages/gift_bag/gift_bag'
-							})
-						}, 1500)
-					}
-				})
-			
+				}
 			},
 		}
 	}

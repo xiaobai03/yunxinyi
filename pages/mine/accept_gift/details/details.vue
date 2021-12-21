@@ -21,7 +21,7 @@
 			<view class="card">
 				<view class="card_body">
 					<view class="list_item">
-						<view class="list_left">送礼人：</view>
+						<view class="list_left">收礼人：</view>
 						<view class="list_left_body">{{form.to_name}}</view>
 						<view class="list_right">
 							<text class="tag_error" v-if="form.status == 1">未领取</text>
@@ -32,9 +32,14 @@
 						</view>
 					</view>
 					<view class="list_item">
+						<view class="list_left">发货人：</view>
+						<view class="list_left_body">{{form.senderListName}}</view>
+					</view>
+					<view class="list_item">
 						<view class="list_left">日期：</view>
 						<view class="list_left_body">{{form.date}}</view>
 					</view>
+					
 					<view class="list_item" v-if="form.regardExpressInfo != null">
 						<view class="list_left">收货地址：</view>
 						<view class="list_left_body">{{form.regardExpressInfo.address1}} {{form.regardExpressInfo.address2}}</view>
@@ -84,6 +89,8 @@
 				this.$request(1037,{id:e}).then(res=>{
 					this.form = res.data
 					this.form.giftbag_detail_list = JSON.parse(res.data.giftbag_detail_list)
+					let list = this.form.senderList.map(item=>{return item.real_name})
+					this.form.senderListName = list.join(',')
 					this.form.date = this.getYMDHMS(this.form.receive_time * 1000)
 				})
 			},

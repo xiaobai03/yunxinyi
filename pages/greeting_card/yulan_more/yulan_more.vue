@@ -27,6 +27,14 @@
 			return {
 				hekaobj:{},
 				audioPlay:true,
+				showModal:true,
+				items:[],
+				lianxirenList:[],
+				showSelect:false,
+				real_name:'',
+				canvas_text:'',
+				parsonName:'',
+				card_id:'',
 				mosicIcon:'https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/music_icon.png',
 				footerList:[
 					{icon:'https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/edityulan_icon1.png',text:'编辑一下'},
@@ -103,12 +111,14 @@
 				}else{
 					this.addmyheka(i)
 				}
-			}
+			},
+			
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
+	
 	.yulan_box{
 		height: calc(100vh - 100upx);
 		position: relative;

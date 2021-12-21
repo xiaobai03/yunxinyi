@@ -200,7 +200,7 @@
 								})
 								setTimeout((
 									uni.navigateTo({
-										url:`/pages/address/address?id=${this.obj.id}&obj=${JSON.stringify(this.address)}`
+										url:`/pages/address/address?id=${that.obj.id}&obj=${JSON.stringify(that.address)}`
 									})
 								),1000)
 								

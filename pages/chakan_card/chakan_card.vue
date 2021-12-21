@@ -38,8 +38,8 @@
 			this.obj.sign = option.sign
 			this.obj.id = option.id
 			// that.obj = {
-			// 	sign:'b255c0e75888925ed5a99fb019cff0f8',
-			// 	id:19,
+			// 	sign:'ebe4b0f5a90e45993b44ca7513c6248a',
+			// 	id:173,
 			// 	uid:1
 			// }
 			this.$request(1031,that.obj).then(res=>{

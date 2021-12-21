@@ -50,7 +50,7 @@
 				        if (res.confirm) {
 							uni.clearStorage();
 				            uni.switchTab({
-				            	url:'/pages/index/index'
+				            	url:'/pages/home/home'
 				            })
 				        } else if (res.cancel) {
 				            console.log('用户点击取消');

@@ -3,7 +3,8 @@
       <view class="u-cell-group">
         <view class="u-cell-item" @click="gotoDetails(item)" v-for="(item,index) in list" :key="index">
           <view class="left">
-            <image :src="item.logo" mode="aspectFit" class="item_images"></image>
+			<image v-if="item.logo" :src="item.logo" mode="aspectFit" class="item_images"></image>
+            <image v-else src="https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/logo.png" mode="aspectFit" class="item_images"></image>
           </view>
           <view class="item-body">
             <view class="title">{{item.realname}}</view>
@@ -33,17 +34,8 @@ export default {
       list: [],
     }
   },
-  created() {
-    const that = this
-    uni.getStorage({
-      key: 'iphone',
-      success: function (res) {
-        if (res.data) {
-          that.active = 'active'
-        }
-      },
-    })
-    this.getData()
+  onShow() {
+  	 this.getData()
   },
   methods: {
     getData() {

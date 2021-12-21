@@ -107,7 +107,7 @@
 						this.list.map(item=>{
 							item.giftbag_detail_list = JSON.parse(item.giftbag_detail_list)
 							const index = item.giftbag_detail_list.length
-							that.$set(item,'width',index * 95 + 'px')
+							that.$set(item,'width',index * 190 + 'upx')
 							const time = this.getYMDHMS(item.receive_time * 1000)
 							this.$set(item,'time',time)
 						})

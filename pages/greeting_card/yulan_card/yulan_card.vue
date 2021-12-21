@@ -1,6 +1,7 @@
 <template>
 	<view class="content">
-		<view class="yulan_box">
+		
+		<view  class="yulan_box">
 			<image :src="hekaobj.pics" class="bg_img"></image>
 			<image :src="mosicIcon" @click="playOrStop()" class="music_icon" :class="{active:audioPlay == true}"></image>
 			<view ref="text" class="heka_text_box" :class="{down:hekaobj.style.animation == 'downshow'}" :style="{'top':hekaobj.style.position[1] + 'px','left':hekaobj.style.position[0] + 'px','width':hekaobj.style.width}">
@@ -27,6 +28,14 @@
 			return {
 				hekaobj:{},
 				audioPlay:true,
+				showModal:true,
+				items:[],
+				lianxirenList:[],
+				showSelect:false,
+				real_name:'',
+				canvas_text:'',
+				parsonName:'',
+				card_id:'',
 				mosicIcon:'https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/music_icon.png',
 				footerList:[
 					{icon:'https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/edityulan_icon1.png',text:'编辑一下'},
@@ -38,6 +47,7 @@
 		onLoad(option) {
 			this.getinfo(option.id)
 		},
+		
 		methods: {
 			playOrStop(){
 				this.audioPlay = !this.audioPlay
@@ -70,9 +80,6 @@
 					uni.switchTab({
 						url:'/pages/gift_bag/gift_bag'
 					})
-					// uni.navigateTo({
-					// 	url:'/pages/mine/my_gift/my_gift'
-					// })
 				}
 			}
 		}

@@ -39,8 +39,7 @@
 		methods: {
 			getData(){
 				this.$request(1054).then(res=>{
-					this.list = []
-					if(res.data) this.list.push(res.data)
+					this.list = res.data
 				})
 			},
 			Stop(){
@@ -50,7 +49,7 @@
 			},
 			onShareAppMessage: function(e) {
 					const that = this
-					let title = '您的BOSS邀请您为他的发货助理！'
+					let title = `${that.obj.boss_name}邀请您为他的发货助理！`
 					let provider = 'weixin'
 					let scene = "WXSceneSession"
 					let path = `/pages/home/home?boss_name=${that.obj.boss_name}&boss_uid=${that.obj.boss_uid}&sign=${that.obj.sign}`
@@ -70,9 +69,10 @@
 
 <style lang="scss" scoped>
 	.card{
-		background: #FFFFFF;
 		.card_item{
+			background: #FFFFFF;
 			padding: 30upx;
+			margin: 10upx 0;
 			.card_body{
 				display: flex;
 				justify-content: space-between;

@@ -45,12 +45,12 @@
 					 </view>
 					 <view class="uni-form-item">
 					 	<view class="label">发货助理</view>
-					 	<view class="input_box" style="position: relative;">
-					 		<picker mode="selector" :range="zhuliListName" @change="changeZhu" style="width: 250upx;">
-					 			<input placeholder="请选择" style="width: 210upx;float: left;" @keypress="keyFn" ref="input" readonly="readonly" v-model="form.assetsName" disabled />
+					 	<view class="input_box">
+					 		<picker mode="selector" :range="zhuliListName" @change="changeZhu">
+					 			<input placeholder="请选择" style="float: left;width:calc(100% - 50upx);" @keypress="keyFn" ref="input" readonly="readonly" v-model="form.assetsName" disabled />
 								<image src="https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/right_access.png" class="right_access"></image>
 							</picker>
-							<button class="share_btn" data-name="shareBtn" open-type="share">邀请发货助理</button>
+							<!-- <button class="share_btn" data-name="shareBtn" open-type="share">邀请发货助理</button> -->
 					 	</view>
 					 </view>
 					 <view class="btn_box">
@@ -256,7 +256,7 @@
 				uni.chooseImage({
 					count: 1, //默认9
 					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-					sourceType: ['album'], //从相册选择
+					sourceType: ['album','camera'], //从相册选择
 					success: function(res) {
 						let filePath = res.tempFiles[0].path;
 						let filename = filePath.substr(filePath.lastIndexOf('/') + 1);

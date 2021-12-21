@@ -34,6 +34,10 @@
 					</view>
 				</view>
 				<view class="list_item" >
+					<view class="list_left">发货人：</view>
+					<view class="list_left_body">{{form.senderListName}}</view>
+				</view>
+				<view class="list_item" >
 					<view class="list_left">日期：</view>
 					<view class="list_left_body">{{form.date}}</view>
 				</view>
@@ -93,7 +97,8 @@
 					if(res.code == 0){
 						this.form = res.data
 						this.form.giftbag_detail_list = JSON.parse(res.data.giftbag_detail_list)
-						console.log(this.form)
+						let list = this.form.senderList.map(item=>{return item.real_name})
+						this.form.senderListName = list.join(',')
 						this.form.date = this.getYMDHMS(res.data.insert_time * 1000)
 					}
 				})

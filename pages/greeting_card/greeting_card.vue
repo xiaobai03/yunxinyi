@@ -75,7 +75,7 @@
 			onReachBottom() {
 			  if (this.isActive == 0) {
 			    this.loadStatus = 'loading'
-			    this.page_size_self += 6
+			    this.page_size += 6
 			    // 模拟数据加载
 			    setTimeout(() => {
 			      this.loadStatus = 'loadmore'
@@ -83,7 +83,7 @@
 			    }, 1000)
 			  } else {
 			    this.loadStatus = 'loading'
-			    this.page_size += 6
+			    this.page_size_self += 6
 			    // 模拟数据加载
 			    setTimeout(() => {
 			      this.loadStatus = 'loadmore'
@@ -115,13 +115,15 @@
 				})
 			},
 			gotopage(e){
+				console.log(this.isActive,0)
 				uni.navigateTo({
-					url:'/pages/greeting_card/yulan_card/yulan_card?id=' + e.id
+					url:`/pages/greeting_card/yunlan_fengmian/yunlan_fengmian?id=${e.id}&active=${this.isActive}`
 				})
 			},
 			gotopageMore(e){
+				console.log(this.isActive,1)
 				uni.navigateTo({
-					url:'/pages/greeting_card/yulan_more/yulan_more?id=' + e.id
+					url:`/pages/greeting_card/yunlan_fengmian/yunlan_fengmian?id=${e.id}&active=${this.isActive}`
 				})
 			}
 		}

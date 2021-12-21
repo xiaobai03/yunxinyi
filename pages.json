@@ -11,20 +11,12 @@
 		    }
 		},
 		{
-			"path": "pages/gift_bag/gift_bag",
-			"style": {
-				"navigationBarTitleText": "礼包",
-				"enablePullDownRefresh": false
-			}
-		},
-		{
-		    "path" : "pages/mine/my_boss/my_boss",
+		    "path" : "pages/greeting_card/yunlan_fengmian/yunlan_fengmian",
 		    "style" :                                                                                    
 		    {
-		        "navigationBarTitleText": "邀请助理",
+		        "navigationBarTitleText": "贺卡封面预览",
 		        "enablePullDownRefresh": false
 		    }
-		    
 		},
 		{
 		    "path" : "pages/chakan_card/chakan_card",
@@ -34,6 +26,24 @@
 		        "enablePullDownRefresh": false
 		    }
 		},
+		{
+			"path": "pages/gift_bag/gift_bag",
+			"style": {
+				"navigationBarTitleText": "礼包",
+				"enablePullDownRefresh": false
+			}
+		},
+		
+		{
+		    "path" : "pages/mine/my_boss/my_boss",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "邀请助理",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		
 		
 		{
 		    "path" : "pages/greeting_card/success/success",
@@ -300,7 +310,7 @@
             "path" : "pages/chakan_gift/details_gift/details_gift",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "礼品详情",
                 "enablePullDownRefresh": false
             }
             
