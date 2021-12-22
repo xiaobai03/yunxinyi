@@ -53,12 +53,11 @@
 					let text = ''
 					if(this.dataObj.status == 2) text = '礼品已经被领取啦！'
 					else if(this.dataObj.status == 3) text = '礼品已经被拒绝啦！'
-					console.log(this.dataObj.to_uid)
 					if(this.dataObj.to_uid != 0){
 						if(this.dataObj.to_uid != uid){
 							uni.showModal({
 							    title: '提示',
-							    content: `${text},请前往首页`,
+							    content: `${text}`,
 								showCancel:false,
 								confirmColor:"#D04442",
 							    success: function (res) {
@@ -72,7 +71,7 @@
 						}else if(!token){
 							uni.showModal({
 							    title: '提示',
-							    content: `${text},请前往首页`,
+							    content: `${text}`,
 								showCancel:false,
 								confirmColor:"#D04442",
 							    success: function (res) {
@@ -89,7 +88,7 @@
 				}else{
 					uni.showModal({
 					    title: '提示',
-					    content: `${res.text},请前往首页`,
+					    content: `${res.text}`,
 						showCancel:false,
 						confirmColor:"#D04442",
 					    success: function (res) {
