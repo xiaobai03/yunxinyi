@@ -51,10 +51,20 @@
 						<image src="https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/right_access.png" class="right_access"></image>
 					</view>
 				</view>
-				<view class="uni-form-item block" style="border: 0;">
+				<view class="uni-form-item">
 					<view class="label ">收货地址</view>
 					<view class="input_box">
-						<textarea class="textarea_border" @keypress="keyFn" ref="input" placeholder="请输入收货地址" v-model="form.address"/>
+						<input placeholder="省、市、区、街道" @keypress="keyFn" ref="input" readonly="readonly"
+							v-model="address1" @click="openPicker()" :disabled="true" />
+					</view>
+					<view class="right_arr">
+						<image src="https://yxy-1306997902.cos.ap-nanjing.myqcloud.com/xiaochengxu-images/right_access.png" class="right_access"></image>
+					</view>
+				</view>
+				<view class="uni-form-item block" style="border: 0;">
+					<view class="label ">详细地址</view>
+					<view class="input_box">
+						<textarea class="textarea_border" @keypress="keyFn" ref="input" placeholder="请输入收货地址" v-model="address2"/>
 					</view>
 				</view>
 				<view class="btn_box">
@@ -75,15 +85,18 @@
 				</view>
 			 </popup>
 		</view>
+		<lotus-address v-on:choseVal="choseValue" :lotusAddressData="lotusAddressData"></lotus-address>
 	</view>
 </template>
 
 <script>
 	import popup from '@/components/lvv-popup/lvv-popup.vue'
 	import COS from '@/static/js/cos-wx-sdk-v5.js'
+	import lotusAddress from "@/components/Winglau14-lotusAddress/Winglau14-lotusAddress.vue";
 	export default {
 		components: {
-			popup
+			popup,
+			lotusAddress
 		},
 		data() {
 			return {
@@ -102,6 +115,14 @@
 					tel: '',
 					birthday: '',
 					address: ''
+				},
+				address1:'',
+				address2:'',
+				lotusAddressData: {
+					visible: false,
+					provinceName: '',
+					cityName: '',
+					townName: '',
 				},
 			}
 		},
@@ -139,8 +160,27 @@
 				if(e.target.value == '1') this.form.gender = 2
 				this.form.genderName = this.array[e.target.value]
 			},
+			openPicker() {
+				this.lotusAddressData.visible = true;
+				this.lotusAddressData.provinceName = '北京';
+				this.lotusAddressData.cityName = '北京市';
+				this.lotusAddressData.townName = '东城区';
+			},
+			//回传已选的省市区的值
+			choseValue(res) {
+				//res数据源包括已选省市区与省市区code
+				this.lotusAddressData.visible = res.visible; //visible为显示与关闭组件标识true显示false隐藏
+				//res.isChose = 1省市区已选 res.isChose = 0;未选
+				if (res.isChose) {
+					this.form.provinceName = this.lotusAddressData.provinceName = res.province; //省
+					this.lotusAddressData.cityName=this.form.cityName = res.city; //市
+					this.lotusAddressData.townName = this.form.townName = res.town; //区
+					this.address1 = `${res.province} ${res.city} ${res.town}`;
+				}
+			},
 			formSubmit() {
 				const form = this.form
+				this.form.address = this.address1 + this.address2
 				if(form.realname && form.gender && form.tel && form.birthday && form.logo){
 					this.$request(1009, this.form).then(res=>{
 						if(res.code == 0){

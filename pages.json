@@ -26,6 +26,8 @@
 		        "enablePullDownRefresh": false
 		    }
 		},
+		
+		
 		{
 			"path": "pages/gift_bag/gift_bag",
 			"style": {

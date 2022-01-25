@@ -33,13 +33,13 @@
 		},
 		onLoad(option) {
 			const that = this
-			console.log(option)
+			// console.log(option)
 			this.obj.uid = option.uid
 			this.obj.sign = option.sign
 			this.obj.id = option.id
 			// that.obj = {
-			// 	sign:'ebe4b0f5a90e45993b44ca7513c6248a',
-			// 	id:173,
+			// 	sign:'bdb6e12d77affa8ad55b2337227e6bb2',
+			// 	id:191,
 			// 	uid:1
 			// }
 			this.$request(1031,that.obj).then(res=>{

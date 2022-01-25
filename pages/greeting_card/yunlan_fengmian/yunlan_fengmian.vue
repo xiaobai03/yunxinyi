@@ -185,8 +185,8 @@
 			}
 			.last_name{
 				position: absolute;
-				bottom: 100upx;
-				right: 30upx;
+				bottom: 150upx;
+				right: 60upx;
 				font-size: 40upx;
 				color: #f5f5f5;
 			}
